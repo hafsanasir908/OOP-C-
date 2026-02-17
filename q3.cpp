@@ -1,48 +1,59 @@
-//hafsa nasir
-//CT-068
-
-#include <iostream>
+#include<iostream>
 using namespace std;
-
-class Product {
-protected:
-    string name;
-    float price;
-public:
-    Product(string n, float p) {
-        name = n;
-        price = p;
-    }
+class account{
+	private:
+	int acc_num;
+	int acc_bal;
+	int security_code;
+	static int count;
+	
+	public:
+	account(){
+		count++;
+	}
+	
+	void initialize(int num , int bal , int code)
+	{
+		acc_num = num;
+		acc_bal = bal;
+		security_code = code;
+		
+	}
+	
+	void display()
+	{
+		cout<<"account num : "<<acc_num<<" "<<"account balance : "<<acc_bal<<" "<<"security code : "<<security_code;
+	}
+	
+	static int getcount()
+	{
+		return count;
+	}
+	
 };
 
-class Electronics : public Product {
-    int warranty;
-public:
-    Electronics(string n, float p, int w) : Product(n,p) {
-        warranty = w;
-    }
-    void finalPrice() {
-        cout << name << " Final Price: " << price << endl;
-        cout << "Warranty: " << warranty << " years\n";
-    }
-};
-
-class Clothing : public Product {
-    string size;
-public:
-    Clothing(string n, float p, string s) : Product(n,p) {
-        size = s;
-    }
-    void finalPrice() {
-        cout << name << " Final Price: " << price << endl;
-        cout << "Size: " << size << endl;
-    }
-};
-
-int main() {
-    Electronics e("Laptop", 55000, 2);
-    Clothing c("Shirt", 18000, "M");
-
-    e.finalPrice();
-    c.finalPrice();
+int account :: count = 0;
+int main()
+{
+    account a1 , a2 , a3;
+    
+    a1.initialize(101 , 50000 , 1234);
+    a2.initialize(102 , 25000, 4321);
+    a3.initialize(103 , 1500 , 2343);
+    
+    cout<<"account 1 details"<<endl;
+    a1.display();
+    cout<<endl;
+    
+    
+    cout<<"account 2 details"<<endl;
+     a2.display();
+     cout<<endl;
+     
+    cout<<"account 3 details"<<endl;
+     a3.display();
+	 cout<<endl;
+     
+     cout<<"total objects created"<<endl;
+     cout<<account::getcount()<<endl;
 }

@@ -1,36 +1,45 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
-class Account {
-protected:
-    float balance;
-public:
-    Account(float b) {
-        balance = b;
-    }
+class hotel{
+	private:
+	string name;
+	int days;
+	float rent;
+	static const  float PerDayCharge;
+	public:
+	
+	hotel(string n , int d)
+	{
+		name = n;
+		days = d;
+		
+		if(d > 7)
+		{
+			rent = (d - 1) * PerDayCharge;
+		}
+		else{
+			 rent = d * PerDayCharge;
+		}
+	}
+	
+	void display() const{
+		cout<<"coustomer name : "<<name<<endl;
+		cout<<"days: "<<days<<endl;
+		cout<<"rent : "<<rent<<endl;
+	}
 };
 
-class SavingAccount : public Account {
-public:
-    SavingAccount(float b) : Account(b) {}
-    void addInterest() {
-        balance += balance * 0.05;
-        cout << "Balance with interest: " << balance << endl;
-    }
-};
+const float hotel :: PerDayCharge = 1000.85;
+int main()
+{
+	hotel h1("hafsa" , 5);
+	hotel h2("eman" , 10);
+	
+	cout<<"coustomer 1 details"<<endl;
+	h1.display();
+	
+	
+	cout<<"coustomer 2 details"<<endl;
+	h2.display();}
 
-class FixedAccount : public Account {
-public:
-    FixedAccount(float b) : Account(b) {}
-    void showBalance() {
-        cout << "Fixed Account Balance: " << balance << endl;
-    }
-};
 
-int main() {
-    SavingAccount s(15000);
-    FixedAccount f(35000);
-
-    s.addInterest();
-    f.showBalance();
-}

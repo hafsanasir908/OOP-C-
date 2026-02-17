@@ -1,33 +1,58 @@
-//hafsa nasir
-//CT-068
-
-#include <iostream>
+#include<iostream>
 using namespace std;
+class employee{
+	private:
+	char* emp_name;
+	const int emp_id;
+	
+	public:
+		employee(const char*name  , int id) : emp_id(id)
+		{
+			emp_name = new char[strlen(name) + 1];
+			strcpy(emp_name , name); 
+		}
+		
+		//setter for name
+		
+		void setname(const char*name)
+		{
+			delete[] emp_name;
+			emp_name = new char[strlen(name) + 1];
+			strcpy(emp_name , name);
+			
+		}
+		
+		//getter for name
+		
+		const char* getname()
+		{
+			return emp_name;
+			
+		}
+		
+		//getter for id
+	  
+	    int getid() const{
+	    	return emp_id;
+		}
+		
+		~employee(){
+			delete[] emp_name;
+		}
+	
 
-class Person {
-protected:
-    string name;
-public:
-    void setPerson(string n) {
-        name = n;
-    }
+	
 };
-
-class Student : public Person {
-    int roll;
-public:
-    void setStudent(int r) {
-        roll = r;
-    }
-    void display() {
-        cout << "Name: " << name << endl;
-        cout << "Roll No: " << roll << endl;
-    }
-};
-
-int main() {
-    Student s;
-    s.setPerson("hafsa");
-    s.setStudent(001);
-    s.display();
+int main()
+{
+    employee e1("hafsa" , 101);
+    employee e2("eman" , 102);
+    employee e3("duaa" , 103);
+    
+    e1.setname("amna");
+    cout<<e1.getname()<<" "<<e1.getid()<<endl;
+    cout<<e2.getname()<<" "<<e2.getid()<<endl;
+    cout<<e3.getname()<<" "<<e3.getid()<<endl;
+    
+    
 }
