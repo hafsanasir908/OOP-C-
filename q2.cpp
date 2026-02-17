@@ -1,31 +1,44 @@
-#include<iostream>
+//hafsa nasir
+//CT-068
+
+#include <iostream>
 using namespace std;
-class swapNumber{
 
-	
-	void swapThree(	int* a , int* b	, int* c)
-	{
-		int temp = *a;
-		*a = *b;
-		*b = *c;
-		*c = temp;
-		
-	}
+class Person {
+protected:
+    string name;
+public:
+    void setName(string n) {
+        name = n;
+    }
 };
-int main()
-{
-	int x , y , z;
-	cout<<"enter three numbers : ";
-	cin>>x>>y>>z;
-	
-	cout<<"before swapping"<<x<<" "<<y<<" "<<z<<endl;
-	  
-	swapNumber s;
-    s.swapThree(&x , &y , &z);
-    
-    cout<<"after swapping"<<x<<" "<<y<<" "<<z<<endl;
-    
-	
 
+class Student : public Person {
+protected:
+    int roll;
+public:
+    void setRoll(int r) {
+        roll = r;
+    }
+};
+
+class Result : public Student {
+    int marks;
+public:
+    void setMarks(int m) {
+        marks = m;
+    }
+    void display() {
+        cout << "Name: " << name << endl;
+        cout << "Roll: " << roll << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+
+int main() {
+    Result r;
+    r.setName("hafsa");
+    r.setRoll(68);
+    r.setMarks(98);
+    r.display();
 }
-

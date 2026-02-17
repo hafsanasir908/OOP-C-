@@ -1,86 +1,36 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class account{
-	protected:
-		 double balance;
-		public:
-			account()
-			{
-				balance = 200000; 
-			}
+
+class Account {
+protected:
+    float balance;
+public:
+    Account(float b) {
+        balance = b;
+    }
 };
 
-class saving : public account{
-	
-	void withdraw(double amount)
-	{
-		if(amount > 100000)
-		{
-			cout<<"cannot withdraw more tan 100000\n";
-			return;
-		}
-		
-		
-			tax = amount * 0.02;
-			balance -= (amount + tax);
-			
-			if(amount > 50000)
-			{
-				balane -= balance * 0.05;
-			}
-		cout<<"remaining balance : "<<balance<<endl;
-	}
+class SavingAccount : public Account {
+public:
+    SavingAccount(float b) : Account(b) {}
+    void addInterest() {
+        balance += balance * 0.05;
+        cout << "Balance with interest: " << balance << endl;
+    }
 };
-	class current : public account{
-		
-		void withdraw(double amount)
-		{
-			if(amount > 100000)
-		{
-			cout<<"cannot withdraw more tan 100000\n";
-			return;
-		}
-		
-		 balance -= amount - 100;
-		 
-		 if(amount > 50000)
-		 {
-		 	balance -= balance * 0.05;
-		 }
-		  
-			cout<<"remaining balance : "<<balance<<endl;
-		}
-	};
-	
-	
 
-int main()   
-{
-	char type;
-	double amount;
-	
-	cout<<"enter account type (S\N): \n";
-	cin>>type;
-	
-	cout<<"enter withdrawal amount : \n";
-	cin>>amount;
-	
-	if(type == 's' || type == 'S')
-	{
-		saving s;
-		s.withdraw (amount);
-	}
-	else if (type == 'c' || type == 'C' )
-	{
-		current c;
-		c.withdraw(amount);
-	}
-	
-	else{
-		cout<<"invalid account type!"<<endl;
-	}
-	
-	return 0;
+class FixedAccount : public Account {
+public:
+    FixedAccount(float b) : Account(b) {}
+    void showBalance() {
+        cout << "Fixed Account Balance: " << balance << endl;
+    }
+};
 
+int main() {
+    SavingAccount s(15000);
+    FixedAccount f(35000);
+
+    s.addInterest();
+    f.showBalance();
 }
-
